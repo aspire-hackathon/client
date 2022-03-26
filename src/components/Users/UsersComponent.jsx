@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getUsers } from "../../redux/actions/users";
-import Card from "../Cards/CardComponent";
+import Card from "../UI/Card/CardComponent";
+
+import classes from './Users.module.css';
 
 const Users = () => {
     const dispatch = useDispatch();
@@ -12,16 +14,19 @@ const Users = () => {
     useEffect(() => {
         dispatch(getUsers());
     }, []);
-    
-    return(
-        <>
+
+    return (
+        <Card className={classes.users}>
             {users.loading && <p>Loading...</p>}
-            {users.length > 0 && users.map((user) => {
-               return <Card user={user} key={user.id} />
-            })}
-            {users.length <= 0 && !loading && <p>No users</p>}
+            <ul>
+                {users.length > 0  && users.map((user) => (
+                    <li key={user.id}>
+                        {user.name} ({user.age} years old)
+                    </li>
+                ))}
+            </ul> 
             {error && !loading && <p>{error}</p>}
-        </>
+        </Card>
     );
 }
 

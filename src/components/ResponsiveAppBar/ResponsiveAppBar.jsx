@@ -15,8 +15,8 @@ import MenuItem from '@mui/material/MenuItem';
 import classes from './ResponsiveAppBar.module.css';
 import logo from '../../assets/images/logo.png';
 
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+// const pages = ['Products', 'Pricing', 'Blog'];
+const settings = ['Profile', 'Account', 'Logout'];
 
 const ResponsiveAppBar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -38,7 +38,7 @@ const ResponsiveAppBar = () => {
     };
 
     return (
-        <AppBar position="static" sx={{ bgcolor: "#dd4343" }}>
+        <AppBar position="sticky" sx={{ bgcolor: "#dd4343" }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Typography
@@ -47,10 +47,10 @@ const ResponsiveAppBar = () => {
                         component="div"
                         sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
                     >
-                        <a className={classes.logo} ><img className={classes.img} src={logo} /></a>
+                        <a href="#" className={classes.logo} title="Go to homepage"><img className={classes.img} src={logo} /></a>
                     </Typography>
 
-                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                    {/* <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                             size="large"
                             aria-label="account of current user"
@@ -80,30 +80,32 @@ const ResponsiveAppBar = () => {
                             }}
                         >
                             {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                                <MenuItem key={page} onClick={handleCloseNavMenu} className="pageLink">
                                     <Typography textAlign="center">{page}</Typography>
                                 </MenuItem>
                             ))}
                         </Menu>
-                    </Box>
+                    </Box> */}
+                    
                     <Typography
                         variant="h6"
                         noWrap
                         component="div"
                         sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
                     >
-                        <div className={classes.logo}><img className={classes.img} src={logo} /></div>
+                        <a href="#" className={classes.logo} title="Go to homepage"><img className={classes.img} src={logo} /></a>
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map((page) => (
+                        {/* {pages.map((page) => (
                             <Button
                                 key={page}
                                 onClick={handleCloseNavMenu}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
+                                className="pageButton"
                             >
                                 {page}
                             </Button>
-                        ))}
+                        ))} */}
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
