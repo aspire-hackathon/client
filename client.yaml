@@ -56,7 +56,7 @@ spec:
       containers:
       - name: react-client-container
         # image: anokhadocker/client:latest
-        image: anokhadocker/aspire-client:1
+        image: ${REPOSITORY_TAG}
         imagePullPolicy: Never
         ports:
         - containerPort: 80
