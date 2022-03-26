@@ -1,25 +1,25 @@
-import * as type from '../types/users';
+import * as type from '../types/causes';
 
 const initialState = {
-    users: [],
+    causes: [],
     loading: false,
     error: null,
 };
 
 export default function users(state = initialState, action) {
     switch(action.type) {
-        case type.GET_USERS_REQUESTED:
+        case type.GET_CAUSES_REQUESTED:
             return {
                 ...state,
                 loading: true
             }
-        case type.GET_USERS_SUCCESS:
+        case type.GET_CAUSES_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                users: action.users,
+                causes: action.causes,
             }
-        case type.GET_USERS_FAIL:
+        case type.GET_CAUSES_FAIL:
             return {
                 ...state,
                 loading: false,

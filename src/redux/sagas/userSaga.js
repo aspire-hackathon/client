@@ -1,5 +1,5 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-import * as types from '../types';
+import * as types from '../types/users';
 
 function getApi() {
     return fetch(process.env.REACT_APP_API_URL, {
