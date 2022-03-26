@@ -1,7 +1,8 @@
 import './App.css';
 import Buttons from './components/Buttons/Buttons';
 import ResponsiveAppBar from './components/ResponsiveAppBar/ResponsiveAppBar';
-import Register from './components/Auth/Register'
+import Register from './components/Auth/Register';
+import Login from './components/Auth/Login';
 import Users from './components/Users/UsersComponent';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -16,6 +17,7 @@ function App() {
                         <Route path="/" >
                             {/* <Route index element={<Register />} /> */}
                             <Route path="register" element={<Register />} />
+                            <Route path="login" element={<Login />} />
                             <Route path="users" element={<Users />} />
                         </Route>
                     </Routes>
