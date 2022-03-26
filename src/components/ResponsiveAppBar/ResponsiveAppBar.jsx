@@ -8,19 +8,23 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+
+import Button from '../UI/Button/Button';
+
+import { useNavigate } from "react-router-dom";
 
 import classes from './ResponsiveAppBar.module.css';
 import logo from '../../assets/images/logo.png';
 
 // const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Logout'];
+const settings = ['Profile', 'Logout'];
 
 const ResponsiveAppBar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const [isUserLoggedIn, setIsUserLoggedIn] = React.useState(true);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -37,8 +41,17 @@ const ResponsiveAppBar = () => {
         setAnchorElUser(null);
     };
 
+    const viewProfileHandler = () => {
+
+    }
+    
+    const navigate = useNavigate();
+    const logOutHandler = () => {
+        setIsUserLoggedIn(false);
+        navigate("/login", { replace: true });
+    }
     return (
-        <AppBar position="sticky" sx={{ bgcolor: "#dd4343" }}>
+        <AppBar position="sticky" sx={{ bgcolor: "#dd4343" }} className={classes.appBar}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Typography
@@ -109,12 +122,15 @@ const ResponsiveAppBar = () => {
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Open settings">
+                        {!isUserLoggedIn && <Button variant="outlined" type="link" path='login' className={classes.login}>Login</Button>}
+
+                        {isUserLoggedIn && <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
                             </IconButton>
-                        </Tooltip>
-                        <Menu
+                        </Tooltip>}
+
+                        {isUserLoggedIn && <Menu
                             sx={{ mt: '45px' }}
                             id="menu-appbar"
                             anchorEl={anchorElUser}
@@ -130,12 +146,18 @@ const ResponsiveAppBar = () => {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {settings.map((setting) => (
+                            <MenuItem key="profile" onClick={viewProfileHandler}>
+                                <Typography textAlign="center">Profile</Typography>
+                            </MenuItem>
+                            <MenuItem key="logOut" onClick={logOutHandler}>
+                                <Typography textAlign="center">Logout</Typography>
+                            </MenuItem>
+                            {/* {settings.map((setting) => (
                                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                                     <Typography textAlign="center">{setting}</Typography>
                                 </MenuItem>
-                            ))}
-                        </Menu>
+                            ))} */}
+                        </Menu>}
                     </Box>
                 </Toolbar>
             </Container>

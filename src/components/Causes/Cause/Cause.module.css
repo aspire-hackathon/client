@@ -50,7 +50,7 @@
 
 .cause .details .cardFooter {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-content: flex-start;
 }
 
@@ -72,8 +72,12 @@
     color: orange;
 }
 
-.cardFooter button {
+.cardFooter .button {
     text-transform: none;
     padding: 5px 15px;
+    background: #dd4343;
 }
 
+.cardFooter .button:hover {
+    background: #ac3434;
+}

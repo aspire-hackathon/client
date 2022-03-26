@@ -14,6 +14,7 @@ function App() {
         <BrowserRouter>
             <div className="App">
                 <ResponsiveAppBar />
+                <main>
                 <ThemeProvider theme={theme}>
                     <Routes>
                         <Route path="/" >
@@ -22,9 +23,14 @@ function App() {
                             <Route path="login" element={<Login />} />
                             <Route path="users" element={<Users />} />
                             <Route path="causes" element={<Causes />} />
+                            <Route exact path="causes/:id" element={<Register />} />
                         </Route>
                     </Routes>
                 </ThemeProvider>
+                </main>
+                <footer>
+                    <span>&copy; Created by Team Oranga</span>
+                </footer>
             </div>
         </BrowserRouter>
     );
