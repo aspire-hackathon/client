@@ -1,5 +1,7 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
 function Buttons() {
     return (
@@ -11,4 +13,4 @@ function Buttons() {
     );
   }
   
-  export default Buttons;
+export default Buttons;
