@@ -35,6 +35,10 @@ export default function users(state = initialState, action) {
             return {
                 ...state,
                 loading: false,
+                status: {
+                    code:action.users.status.code,
+                    statusText:action.users.status.statusText
+                },
                 error: action.message,
             }
         case type.GET_USER_BYID:
