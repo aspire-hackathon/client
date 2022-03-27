@@ -13,7 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 
 import Button from '../UI/Button/Button';
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 import classes from './ResponsiveAppBar.module.css';
 import logo from '../../assets/images/logo.png';
@@ -58,47 +58,10 @@ const ResponsiveAppBar = () => {
                         variant="h6"
                         noWrap
                         component="div"
-                        sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+                        sx={{  flexGrow: 1, mr: 2, display: { xs: 'none', md: 'flex' } }}
                     >
                         <a href="#" className={classes.logo} title="Go to homepage"><img className={classes.img} src={logo} /></a>
                     </Typography>
-
-                    {/* <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                        <IconButton
-                            size="large"
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            onClick={handleOpenNavMenu}
-                            color="inherit"
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <Menu
-                            id="menu-appbar"
-                            anchorEl={anchorElNav}
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'left',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'left',
-                            }}
-                            open={Boolean(anchorElNav)}
-                            onClose={handleCloseNavMenu}
-                            sx={{
-                                display: { xs: 'block', md: 'none' },
-                            }}
-                        >
-                            {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu} className="pageLink">
-                                    <Typography textAlign="center">{page}</Typography>
-                                </MenuItem>
-                            ))}
-                        </Menu>
-                    </Box> */}
                     
                     <Typography
                         variant="h6"
@@ -108,21 +71,15 @@ const ResponsiveAppBar = () => {
                     >
                         <a href="#" className={classes.logo} title="Go to homepage"><img className={classes.img} src={logo} /></a>
                     </Typography>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {/* {pages.map((page) => (
-                            <Button
-                                key={page}
-                                onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
-                                className="pageButton"
-                            >
-                                {page}
-                            </Button>
-                        ))} */}
-                    </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
-                        {!isUserLoggedIn && <Button variant="outlined" type="link" path='login' className={classes.login}>Login</Button>}
+                        {!isUserLoggedIn && (
+                        <>
+                        <Button variant="outlined" type="link" path='login' className={classes.login}>Login</Button>
+                        <Button variant="outlined" type="link" path='register' className={classes.login}>Register</Button>
+                        </>
+                        )
+                    }
 
                         {isUserLoggedIn && <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
