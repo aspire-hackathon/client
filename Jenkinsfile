@@ -25,10 +25,12 @@ pipeline {
          }
       }
 
-      stage('Deploy to Cluster') {
-          steps {
-            sh 'envsubst < ${WORKSPACE}/client.yaml | kubectl apply -f -'
-          }
+       stage('Push image to docker registry') {
+         steps {
+            withDockerRegistry([ credentialsId: "dockerRegistryCred", url: '' ]) {
+               sh 'docker push ${REPOSITORY_TAG}'
+            }
+         }
       }
    }
 }
