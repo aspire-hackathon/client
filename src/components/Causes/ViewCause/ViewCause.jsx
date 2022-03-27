@@ -12,9 +12,7 @@ const ViewCause = (props) => {
     React.useEffect(() => {
      console.log("sss",param.id);
      axios.get(`http://a42f5461f582449a29fdc102149e9fd5-390825282.us-east-1.elb.amazonaws.com/api/cause/byid/623ece840d8b74d3ecf5d9d1`).then(({data})=>{
-         console.log("data",data)
          setCauseData(data);
-         console.log("causeData",causeData)
      })
     }, []);
 
