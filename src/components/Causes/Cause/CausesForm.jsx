@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import { Avatar, MenuItem, getImageListItemBarUtilityClass,styled } from '@mui/material';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -19,21 +19,26 @@ const Input = styled('input')({
   });
 
 export default function CausesForm() {
-    const [avatarPreview, setAvatarPreview] = useState();
-
+    const [causeImg, setCauseImg] = useState({});
+    const imgRef = useRef()
     const getImage = (e) =>{
         const fileReader = new FileReader();
+        console.log("image ref",imgRef);
         fileReader.onload = () => {
             if (fileReader.readyState === 2) {
-            setAvatarPreview(fileReader.result);
+                let imgData = {
+                    name:imgRef.current.files[0].name,
+                    image:fileReader.result
+                }
+            setCauseImg(imgData);
             }
         };
         fileReader.readAsDataURL(e.target.files[0]);
     }
     
     useEffect(()=>{
-        formik.values.causeImg = avatarPreview;
-    },[avatarPreview])
+        formik.values.causeImg = causeImg;
+    },[causeImg])
 
     const CausesSchema = Yup.object().shape({
         title: Yup.string()
@@ -117,27 +122,14 @@ export default function CausesForm() {
                                 placeholder='Enter Aim Description'
                             />
                         </Grid>
+                        
                         <Grid item xs={12}>
-                            <TextField
-                                name="causeStatus"
-                                required
-                                fullWidth
-                                multiline
-                                id="causeStatus"
-                                label="Cause Status"
-                                value={formik.values.causeStatus}
-                                onChange={formik.handleChange}
-                                error={formik.touched.causeStatus && Boolean(formik.errors.causeStatus)}
-                                helperText={formik.touched.causeStatus && formik.errors.causeStatus}
-                                autoFocus
-                                placeholder='Enter Cause Status'
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Avatar size='md' src={avatarPreview} />
+                            {/* <Avatar size='md' src={causeImg} /> */}
                             
                             <label htmlFor="contained-button-file">
-                                <Input accept="image/*"  id="contained-button-file" multiple type="file" onChange={(e)=>getImage(e)} />
+                                <Box component="div">{causeImg.name}</Box>
+
+                                <Input accept="image/*"  id="contained-button-file" multiple type="file" ref={imgRef} onChange={(e)=>getImage(e)} />
                                 <Button variant="contained" component="span">
                                     Upload
                                 </Button>
@@ -148,7 +140,14 @@ export default function CausesForm() {
                         type="submit"
                         fullWidth
                         variant="contained"
-                        sx={{ mt: 3, mb: 2 }}
+                        sx={{
+                            mt: 3,
+                            mb: 2,
+                            bgcolor: "#dd4343",
+                            ":hover": {
+                                bgcolor: "#ac3434",
+                            },
+                        }}
                     >
                         Sign Up
                     </Button>
