@@ -25,7 +25,7 @@ function App() {
                             <Route path="login" element={<Login />} />
                             <Route path="users" element={<Users />} />
                             <Route path="causes" element={<Causes />} />
-                            <Route exact path="causes/:id" element={<ViewCause />} />
+                            <Route exact path="causes/:id" element={<ViewCause/>}  />
                             <Route path="causes-form" element={<CausesForm />} />
                         </Route>
                     </Routes>

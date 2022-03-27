@@ -2,7 +2,7 @@ import React from 'react';
 
 import Card from "../../UI/Card/CardComponent";
 import Button from '../../UI/Button/Button'
-
+import { Link, Outlet } from 'react-router-dom';
 import classes from './Cause.module.css';
 
 const Cause = (props) => {
