@@ -171,9 +171,25 @@ export default function Register() {
                         type="submit"
                         fullWidth
                         variant="contained"
-                        sx={{ mt: 3, mb: 2 }}
+                        sx={{
+                            mt: 3,
+                            mb: 2,
+                            bgcolor: "#dd4343",
+                            ":hover": {
+                                bgcolor: "#ac3434",
+                            },
+                        }}
                     >
                         Sign Up
+                    </Button>
+                    <Button
+                        type="button"
+                        href='/login'
+                        fullWidth
+                        variant="outlined"
+                        sx={{ mt: 3, mb: 2, textTransform: "none" }}
+                    >
+                        Already Registered, Log In
                     </Button>
                 </Box>
             </Box>

@@ -7,3 +7,17 @@
     width: 100%;
     border-radius: 5px;
 }
+
+.appBar .login {
+    border: 1px solid #fefefe;
+    color: #fefefe;
+    padding: 5px 15px;
+    border-radius: 4px;
+    margin: 0 5px;
+}
+
+.appBar .login:hover {
+    border: 1px solid #dd4343;
+    background-color: #fefefe;
+    color: #dd4343;
+}

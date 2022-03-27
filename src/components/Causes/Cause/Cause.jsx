@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Card from "../../UI/Card/CardComponent";
 import Button from '../../UI/Button/Button'
 
@@ -6,7 +7,7 @@ import classes from './Cause.module.css';
 
 const Cause = (props) => {
 
-    const { causeOwner, title, aimDescription, causeStatus, volunteers, causeImage, address } = props.cause;
+    const { causeOwner, id, title, aimDescription, causeStatus, volunteers, causeImage, address } = props.cause;
 
     const COMPLETED = {text: "Completed", className: 'completed'};
     const INPROGRESS = {text: "In Progress", className: 'progress'};
@@ -25,7 +26,7 @@ const Cause = (props) => {
                 <div className={classes.volunteer}><b>Volunteers Applied: </b> {volunteers.length}</div>
                 <div className={classes.cardFooter}>
                     <div className={` ${classes.status} ${classes[getStatus().className]} `}>{ getStatus().text }</div>
-                    <Button type="contained">View Cause</Button>
+                    <Button variant="contained" type="link" path={`/causes/${id}`} className={classes.button}>View Cause</Button>
                 </div>
             </div>
         </Card>

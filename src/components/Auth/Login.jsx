@@ -38,26 +38,29 @@ export default function Login() {
     });
 
     return (
-
         <Container component="main" maxWidth="xs">
             <CssBaseline />
             <Box
                 sx={{
                     marginTop: 8,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
                 }}
             >
-                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
                     <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    LogIn
+                    Log In
                 </Typography>
 
-
-                <Box component="form" noValidate onSubmit={formik.handleSubmit} sx={{ mt: 3 }}>
+                <Box
+                    component="form"
+                    noValidate
+                    onSubmit={formik.handleSubmit}
+                    sx={{ mt: 3 }}
+                >
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <TextField
@@ -66,13 +69,19 @@ export default function Login() {
                                 required
                                 fullWidth
                                 id="userName"
-                                label="userName"
+                                label="Username"
                                 value={formik.values.userName}
                                 onChange={formik.handleChange}
-                                error={formik.touched.userName && Boolean(formik.errors.userName)}
-                                helperText={formik.touched.userName && formik.errors.userName}
+                                error={
+                                    formik.touched.userName &&
+                                    Boolean(formik.errors.userName)
+                                }
+                                helperText={
+                                    formik.touched.userName &&
+                                    formik.errors.userName
+                                }
                                 autoFocus
-                                placeholder='Enter User Name'
+                                placeholder="Enter User Name"
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -85,8 +94,14 @@ export default function Login() {
                                 id="password"
                                 value={formik.values.password}
                                 onChange={formik.handleChange}
-                                error={formik.touched.password && Boolean(formik.errors.password)}
-                                helperText={formik.touched.password && formik.errors.password}
+                                error={
+                                    formik.touched.password &&
+                                    Boolean(formik.errors.password)
+                                }
+                                helperText={
+                                    formik.touched.password &&
+                                    formik.errors.password
+                                }
                                 autoComplete="new-password"
                             />
                         </Grid>
@@ -95,9 +110,25 @@ export default function Login() {
                         type="submit"
                         fullWidth
                         variant="contained"
-                        sx={{ mt: 3, mb: 2 }}
+                        sx={{
+                            mt: 3,
+                            mb: 2,
+                            bgcolor: "#dd4343",
+                            ":hover": {
+                                bgcolor: "#ac3434",
+                            },
+                        }}
                     >
                         LogIn
+                    </Button>
+                    <Button
+                        type="button"
+                        href='/register'
+                        fullWidth
+                        variant="outlined"
+                        sx={{ mt: 3, mb: 2, textTransform: "none" }}
+                    >
+                        New here, Register
                     </Button>
                 </Box>
             </Box>
