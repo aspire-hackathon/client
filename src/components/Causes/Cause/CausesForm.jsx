@@ -80,11 +80,8 @@ export default function CausesForm() {
                     alignItems: 'center',
                 }}
             >
-                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                    {/* <LockOutlinedIcon /> */}
-                </Avatar>
                 <Typography component="h1" variant="h5">
-                    Causes
+                    Add Cause
                 </Typography>
 
 
@@ -149,7 +146,7 @@ export default function CausesForm() {
                             },
                         }}
                     >
-                        Sign Up
+                        Add Cause
                     </Button>
                 </Box>
             </Box>

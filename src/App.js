@@ -30,7 +30,7 @@ function App() {
                     </Routes>
                 </ThemeProvider>
                 </main>
-                <footer>
+                <footer className='footer'>
                     <span>&copy; Created by Team Oranga</span>
                 </footer>
             </div>

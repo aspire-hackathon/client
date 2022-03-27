@@ -1,5 +1,4 @@
 .causeList {
-    margin: 2rem auto;
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
@@ -9,7 +8,6 @@
 
 ul.causeList {
     list-style: none;
-    padding: 0.5rem 1rem;
 }
 
 .causeList li {

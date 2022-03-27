@@ -1,21 +1,19 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
-import { Link as RouterLink, MemoryRouter } from "react-router-dom";
-import Link from "@mui/material/Link";
+import classes from './Button.module.css'
 
-const Buttons = (props) => {
-    const { children, variant, type, path, className } = props;
+export default (props) => {
+    const { children, variant, type, path, className, onClick } = props;
 
     //variant can be => text/outlined/contained
-    if (type === "button") {
+
+    if (type === "link") {
         return (
-            <Button variant={variant} sx={{ bgcolor: type === "contained" ? "#dd4343" : "" }} className={className}>{children}</Button>
+            <Button href={path} variant={variant} className={`${classes[variant]} ${className}`}>{children}</Button>
         );
     } else {
         return (
-            <Button href={path} variant={variant} sx={{ color: type === "contained" ? "#dd4343" : "" }} className={className}>{children}</Button>
+            <Button variant={variant} className={`${classes[variant]} ${className}`} onClick={onClick}>{children}</Button>
         );
     }
 };
-
-export default Buttons;
