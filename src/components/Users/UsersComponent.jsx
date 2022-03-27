@@ -12,7 +12,7 @@ const Users = () => {
     const error = useSelector(state => state.users.error);
 
     useEffect(() => {
-        dispatch(getUsers());
+        // dispatch(getUsers());
     }, []);
 
     return (
