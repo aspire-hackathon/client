@@ -7,6 +7,7 @@ import classes from './ViewCause.module.css';
 import { typography } from '@mui/system';
 
 const ViewCause = (props) => {
+    let cc = ['aa','bb', 'cc']
     const [causeData,setCauseData] = useState();
     let param = useParams();
     React.useEffect(() => {
@@ -32,8 +33,8 @@ return(
         </Typography>
         <Typography variant="body2" color="text.secondary">
         <Typography variant='h6' component='span'>Volunteers : </Typography>
-        {causeData?.volunteers.map((item)=>(
-            <Typography component="span">{item} </Typography>
+        {causeData?.volunteers.map((item,i)=>(
+            <Typography component="span">{item}{i < causeData?.volunteers.length-1 && ", "}</Typography>
         ))}
         </Typography>
         <Typography variant="body2" color="text.secondary">
