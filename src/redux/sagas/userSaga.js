@@ -21,7 +21,10 @@ function* fetchUsers(action) {
 }
 
 function* userSaga() {
+    console.log('ghghgh---------------------00');
     yield takeEvery(types.GET_USERS_REQUESTED, fetchUsers);
 }
 
 export default userSaga;
+
+

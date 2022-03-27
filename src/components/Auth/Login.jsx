@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
 import { Avatar, MenuItem } from '@mui/material';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,11 +15,13 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { userLogin } from "../../redux/actions/users";
 
 export default function Login() {
-
+    const dispatch = useDispatch();
+    let navigate = useNavigate();
     const LoginSchema = Yup.object().shape({
-        userName: Yup.string()
+        username: Yup.string()
             .min(2, 'Too Short!')
             .max(50, 'Too Long!')
             .required('Name is Required'),
@@ -28,12 +32,14 @@ export default function Login() {
     });
     const formik = useFormik({
         initialValues: {
-            userName: '',
+            username: '',
             password: ''
         },
         validationSchema: LoginSchema,
         onSubmit: (values) => {
-            alert(JSON.stringify(values, null, 2));
+            console.log('values------', values);
+            // alert(JSON.stringify(values, null, 2));
+            dispatch(userLogin(values, navigate));
         },
     });
 
@@ -65,20 +71,20 @@ export default function Login() {
                         <Grid item xs={12}>
                             <TextField
                                 autoComplete="given-name"
-                                name="userName"
+                                name="username"
                                 required
                                 fullWidth
-                                id="userName"
+                                id="username"
                                 label="Username"
-                                value={formik.values.userName}
+                                value={formik.values.username}
                                 onChange={formik.handleChange}
                                 error={
-                                    formik.touched.userName &&
-                                    Boolean(formik.errors.userName)
+                                    formik.touched.username &&
+                                    Boolean(formik.errors.username)
                                 }
                                 helperText={
-                                    formik.touched.userName &&
-                                    formik.errors.userName
+                                    formik.touched.username &&
+                                    formik.errors.username
                                 }
                                 autoFocus
                                 placeholder="Enter User Name"

@@ -6,3 +6,10 @@ export function getUsers(users) {
         payload: users,
     }
 }
+
+export function userLogin(loginRequest, navigate) {
+    return {
+      type: type.USER_LOGIN_REQ,
+      payload: {loginRequest, navigate},
+    };
+  }
