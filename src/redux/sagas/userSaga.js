@@ -5,21 +5,25 @@ import users from '../reducers/users';
 
 function registerApi(user) {
     return axios.post(process.env.REACT_APP_API_URL+'/register',user)
-    .then(res => res.data)
+    .then(res => res)
     .catch((error) => {throw error})
 }
 
 function* registerUser(action) {
     try{
-        const users = yield call(registerApi,action.payload);
-        yield put({ type: types.REGISTER_USER_SUCCESS, users: users});
+        const user = yield call(registerApi,action.payload);
+        yield put({ type: types.REGISTER_USER_SUCCESS, users: {
+            status:{
+                code:user.status,
+                statusText:user.statusText
+            },
+        }});
     } catch (e) {
         yield put({ type: types.REGISTER_USER_FAILURE, message: e.message })
     }
 }
 
 export function* registerUserSaga() {
-    console.log("inside saga")
     yield takeEvery(types.REGISTER_USER, registerUser);
 }
 

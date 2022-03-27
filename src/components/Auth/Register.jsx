@@ -16,6 +16,8 @@ import * as Yup from "yup";
 import { registerUser } from "../../redux/actions/users";
 import { useSelector, useDispatch } from "react-redux";
 import { usePlacesWidget } from "react-google-autocomplete";
+import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -27,9 +29,20 @@ const roles = [
 
 export default function Register() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const loading = useSelector(state => state.users.loading);
+  const reqStatus = useSelector(state => state.users.status);
+  const [error,setError] = useState(false);
 
   const [addressObject, setAddressObject] = React.useState({});
+
+  React.useEffect(()=>{
+      if(reqStatus && reqStatus.code && reqStatus.code.toString().startsWith('2')){
+        navigate("/login", { replace: true });
+      } else {
+       setError(true)
+      }
+  },[reqStatus])
 
   const SignupSchema = Yup.object().shape({
     name: Yup.string()
@@ -109,22 +122,21 @@ export default function Register() {
     });
 
   return (
-      <Container component="main" maxWidth="xs">
-          <CssBaseline />
-          <Box
-              sx={{
-                  marginTop: 8,
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-              }}
-          >
-              <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-                  <LockOutlinedIcon />
-              </Avatar>
-              <Typography component="h1" variant="h5">
-                  Sign up
-              </Typography>
+    <Container component='main' maxWidth='xs'>
+      <CssBaseline />
+      <Box
+        sx={{
+          marginTop: 8,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}>
+        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component='h1' variant='h5'>
+          Sign up
+        </Typography>
 
               <Box
                   component="form"
