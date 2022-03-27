@@ -1,0 +1,10 @@
+div.add-cause-wrapper {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 0 30px;
+}
+
+.add-cause-wrapper button {
+    width: max-content;
+}

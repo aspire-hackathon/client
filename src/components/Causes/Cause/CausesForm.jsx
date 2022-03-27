@@ -75,11 +75,8 @@ export default function CausesForm() {
                     alignItems: 'center',
                 }}
             >
-                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                    {/* <LockOutlinedIcon /> */}
-                </Avatar>
                 <Typography component="h1" variant="h5">
-                    Causes
+                    Add Cause
                 </Typography>
 
 
@@ -148,9 +145,16 @@ export default function CausesForm() {
                         type="submit"
                         fullWidth
                         variant="contained"
-                        sx={{ mt: 3, mb: 2 }}
+                        sx={{
+                            mt: 3,
+                            mb: 2,
+                            bgcolor: "#dd4343",
+                            ":hover": {
+                                bgcolor: "#ac3434",
+                            },
+                        }}
                     >
-                        Sign Up
+                        Add Cause
                     </Button>
                 </Box>
             </Box>
