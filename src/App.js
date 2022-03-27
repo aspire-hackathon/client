@@ -5,6 +5,7 @@ import Register from './components/Auth/Register';
 import Login from './components/Auth/Login';
 import Users from './components/Users/UsersComponent';
 import Causes from './components/Causes/Causes'
+import CausesForm from './components/Causes/Cause/CausesForm'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 const theme = createTheme();
@@ -24,6 +25,7 @@ function App() {
                             <Route path="users" element={<Users />} />
                             <Route path="causes" element={<Causes />} />
                             <Route exact path="causes/:id" element={<Register />} />
+                            <Route path="causes-form" element={<CausesForm />} />
                         </Route>
                     </Routes>
                 </ThemeProvider>
