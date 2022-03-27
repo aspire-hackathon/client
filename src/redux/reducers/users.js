@@ -3,6 +3,10 @@ import * as type from '../types/users';
 const initialState = {
     users: [],
     loading: false,
+    status:{
+        code:0,
+        statusText:''
+    },
     error: null,
     requestedUser:'',
     isUserAuthenticated: false,
@@ -17,10 +21,14 @@ export default function users(state = initialState, action) {
                 loading: true
             }
         case type.REGISTER_USER_SUCCESS:
-            console.log('succ')
+            console.log("reg",action)
             return {
                 ...state,
                 loading: false,
+                status: {
+                    code:action.users.status.code,
+                    statusText:action.users.status.statusText
+                }
             }
         case type.REGISTER_USER_FAILURE:
             console.log('fail',action)
