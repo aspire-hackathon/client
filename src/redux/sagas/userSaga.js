@@ -1,27 +1,25 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import * as types from '../types/users';
+import axios from 'axios';
 
-function getApi() {
-    return fetch(process.env.REACT_APP_API_URL, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'appliction/json',
-        }
-    }).then(res => res.json())
+function registerApi(user) {
+    return axios.post(process.env.REACT_APP_API_URL+'/register',user)
+    .then(res => res.data)
     .catch((error) => {throw error})
 }
 
-function* fetchUsers(action) {
+function* registerUser(action) {
     try{
-        const users = yield call(getApi);
-        yield put({ type: types.GET_USERS_SUCCESS, users: users});
+        const users = yield call(registerApi,action.payload);
+        yield put({ type: types.REGISTER_USER_SUCCESS, users: users});
     } catch (e) {
-        yield put({ type: types.GET_USERS_FAIL, message: e.message })
+        yield put({ type: types.REGISTER_USER_FAILURE, message: e.message })
     }
 }
 
 function* userSaga() {
-    yield takeEvery(types.GET_USERS_REQUESTED, fetchUsers);
+    // yield takeEvery(types.GET_USERS_REQUESTED, fetchUsers);
+    yield takeEvery(types.REGISTER_USER, registerUser);
 }
 
 export default userSaga;
