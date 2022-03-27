@@ -19,7 +19,12 @@ function* registerUser(action) {
             },
         }});
     } catch (e) {
-        yield put({ type: types.REGISTER_USER_FAILURE, message: e.message })
+        yield put({ type: types.REGISTER_USER_FAILURE,users: {
+            status:{
+                code:500,
+                statusText:"Some Error has occured! Please try again!"
+            },
+        },  message: e.message })
     }
 }
 

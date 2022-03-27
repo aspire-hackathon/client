@@ -33,19 +33,17 @@ export default function Register() {
   const navigate = useNavigate();
   const loading = useSelector(state => state.users.loading);
   const reqStatus = useSelector(state => state.users.status);
-  const [error,setError] = useState(null);
+  const [error,setError] = useState(false);
 
   const [addressObject, setAddressObject] = React.useState({});
 
   React.useEffect(()=>{
+      console.log(error)
     if(reqStatus && reqStatus.code) {
         if(reqStatus.code.toString().startsWith('2')){
             navigate("/login", { replace: true });
           } else {
-            setError({
-                title: "Error",
-                message: reqStatus.statusText
-            });
+            setError(true);
         }
     }
   },[reqStatus])
@@ -128,14 +126,15 @@ export default function Register() {
     });
 
     const errorHandler = () => {
-        setError(null);
+        setError(false);
     }  
 
   return (
     <Container component='main' maxWidth='xs'>
+        <div>Error {error}</div>
       {error && <Modal
-          title={error.title}
-          message={error.message}
+          title={reqStatus.code}
+          message={reqStatus.statusText}
           onConfirm={errorHandler}
         />}
       <CssBaseline />
