@@ -15,7 +15,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { userLogin } from "../../redux/actions/users";
+import { login } from "../../redux/actions/users";
 
 export default function Login() {
     const dispatch = useDispatch();
@@ -39,7 +39,7 @@ export default function Login() {
         onSubmit: (values) => {
             console.log('values------', values);
             // alert(JSON.stringify(values, null, 2));
-            dispatch(userLogin(values, navigate));
+            dispatch(login(values, navigate));
         },
     });
 

@@ -1,11 +1,14 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
+import axios from 'axios';
 import * as types from '../types/users';
 
 function userLoginApi(payload) {
-  console.log('payload-------', payload);
-  console.log(`${process.env.REACT_APP_API_URL}/login`);
   return axios
-    .post(`${process.env.REACT_APP_API_URL}/login`, payload)
+    .post(`${process.env.REACT_APP_API_URL}/login`, payload, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
     .then((response) => {
       return Promise.resolve(response.data);
     })
@@ -15,31 +18,29 @@ function userLoginApi(payload) {
 }
 
 function* userLoginAction(action) {
-  console.log('acccctionuuuuuu-----------', action);
   try {
-    const res = yield call(userLoginApi, action.payload.loginRequest);
-    console.log('res----', res);
-    if (res.success && res.message === SUCCESS) {
+    const res = yield call(userLoginApi, action.payload.user);
+    if (res.msg && res.msg === 'Auth successful') {
       localStorage.setItem(
-        ACCESS_TOKEN,
-        `${res.responseData.tokenType} ${res.responseData.accessToken}`
+        'ACCESS_TOKEN',
+        `Bearer ${res.token}`
       );
       yield put({
         type: types.USER_LOGIN_SUCCESS,
-        userDetail: res.responseData.userVo,
+        userDetail: {id: res.id, username: res.userName},
         isUserAuthenticated: true,
         navigate: action.payload.navigate,
       });
     } else {
-      yield put({ type: types.USER_LOGIN_ERROR, message: 'LOGIN_ERR' });
+      yield put({ type: types.USER_LOGIN_FAILURE, message: 'LOGIN_ERR' });
     }
   } catch (e) {
-    yield put({ type: types.USER_LOGIN_ERROR, message: 'LOGIN_ERR' });
+    yield put({ type: types.USER_LOGIN_FAILURE, message: 'LOGIN_ERR' });
   }
 }
 
 function* userLoginSaga() {
-  yield takeEvery(types.USER_LOGIN_REQ, userLoginAction);
+  yield takeEvery(types.USER_LOGIN, userLoginAction);
 }
 
 export default userLoginSaga;
