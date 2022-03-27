@@ -24,7 +24,7 @@ function App() {
                             <Route path="login" element={<Login />} />
                             <Route path="users" element={<Users />} />
                             <Route path="causes" element={<Causes />} />
-                            <Route path="causes/:id" element={<Register />} />
+                            <Route exact path="causes/:id" element={<Register />} />
                             <Route path="causes-form" element={<CausesForm />} />
                         </Route>
                     </Routes>
