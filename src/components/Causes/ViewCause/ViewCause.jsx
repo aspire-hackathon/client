@@ -7,7 +7,6 @@ import classes from './ViewCause.module.css';
 import { typography } from '@mui/system';
 
 const ViewCause = (props) => {
-    let cc = ['aa','bb', 'cc']
     const [causeData,setCauseData] = useState();
     let param = useParams();
     React.useEffect(() => {
