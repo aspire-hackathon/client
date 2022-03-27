@@ -16,5 +16,7 @@
 
 8. kubectl -it exec react-client-pod sh
 
+8.1 git config --global http.sslVerify false
+
 9. minikube service react-client-service
 
