@@ -48,6 +48,7 @@ const ResponsiveAppBar = () => {
     const navigate = useNavigate();
     const logOutHandler = () => {
         setIsUserLoggedIn(false);
+        localStorage.removeItem('ACCESS_TOKEN');
         navigate("/login", { replace: true });
     }
     return (

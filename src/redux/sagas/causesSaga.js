@@ -21,6 +21,7 @@ function* fetchCauses(action) {
 }
 
 function* causesSaga() {
+    console.log('testing causes');
     yield takeEvery(types.GET_CAUSES_REQUESTED, fetchCauses);
 }
 

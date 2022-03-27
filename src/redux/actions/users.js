@@ -7,10 +7,10 @@ export function registerUser(user) {
     }
 }
 
-export function login(user) {
+export function login(user, navigate) {
     return {
         type: type.USER_LOGIN,
-        payload: user,
+        payload: {user, navigate},
     }
 }
 
