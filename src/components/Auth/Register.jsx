@@ -26,6 +26,7 @@ const roles = [
 
 export default function Register() {
   const dispatch = useDispatch();
+  const loading = useSelector(state => state.users.loading);
 
   const SignupSchema = Yup.object().shape({
     name: Yup.string()
@@ -58,30 +59,25 @@ export default function Register() {
     },
     validationSchema: SignupSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+        const user = {
+            name: values.name,
+            username: values.userName,
+            password: values.password,
+            role:  values.role,
+            contactNo: values.contact,
+            email: values.email,
+          //   implement once address component ready
+            address: {
+              district: "test",
+              state: "test",
+              pincode: "012345",
+              lat: "test",
+              lng: "test",
+            },
+          };
+          dispatch(registerUser(user));
     },
   });
-
-  const register = () => {
-    const user = {
-      name: formik.values.name,
-      username: formik.values.userName,
-      password: formik.values.password,
-      role:  formik.values.role,
-      contactNo: formik.values.contact,
-      email: formik.values.email,
-    //   implement once address component ready
-      address: {
-        district: "test",
-        state: "test",
-        pincode: "test",
-        lat: "test",
-        lng: "test",
-      },
-    };
-    console.log("reg",user)
-    dispatch(registerUser(user));
-  };
 
   return (
     <Container component='main' maxWidth='xs'>
@@ -214,8 +210,7 @@ export default function Register() {
               ":hover": {
                 bgcolor: "#ac3434",
               },
-            }}
-            onClick={register}>
+            }}>
             Sign Up
           </Button>
           <Button

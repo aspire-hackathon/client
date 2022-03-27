@@ -1,12 +1,5 @@
 import * as type from '../types/users';
 
-// export function getUsers(users) {
-//     return {
-//         type: type.GET_USERS_REQUESTED,
-//         payload: users,
-//     }
-// }
-
 export function registerUser(user) {
     return {
         type: type.REGISTER_USER,
@@ -31,14 +24,14 @@ export function logout() {
 export function getUserById(id) {
     return {
         type: type.GET_USER_BYID,
-        payload: user,
+        payload: id,
     }
 }
 
 export function getUserByUsername(username) {
     return {
         type: type.GET_USER_BYUN,
-        payload: user,
+        payload: username,
     }
 }
 

@@ -4,28 +4,11 @@ const initialState = {
     users: [],
     loading: false,
     error: null,
-    currentUSer:[]
+    requestedUser:''
 };
 
 export default function users(state = initialState, action) {
     switch(action.type) {
-        // case type.GET_USERS_REQUESTED:
-        //     return {
-        //         ...state,
-        //         loading: true
-        //     }
-        // case type.GET_USERS_SUCCESS:
-        //     return {
-        //         ...state,
-        //         loading: false,
-        //         users: action.users,
-        //     }
-        // case type.GET_USERS_FAIL:
-        //     return {
-        //         ...state,
-        //         loading: false,
-        //         error: action.message,
-        //     }
         case type.REGISTER_USER:
             return {
                 ...state,
@@ -36,9 +19,27 @@ export default function users(state = initialState, action) {
             return {
                 ...state,
                 loading: false,
-                users: action.users,
             }
         case type.REGISTER_USER_FAILURE:
+            console.log('fail',action)
+            return {
+                ...state,
+                loading: false,
+                error: action.message,
+            }
+        case type.GET_USER_BYID:
+            return {
+                ...state,
+                loading: true
+            }
+        case type.GET_USER_BYID_SUCCESS:
+            console.log('succ')
+            return {
+                ...state,
+                loading: false,
+                requestedUser: action.user,
+            }
+        case type.GET_USER_BYID_FAILURE:
             console.log('fail',action)
             return {
                 ...state,
