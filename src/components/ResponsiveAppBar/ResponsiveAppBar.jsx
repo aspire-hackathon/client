@@ -16,7 +16,7 @@ import Button from '../UI/Button/Button';
 import { useNavigate } from 'react-router-dom';
 
 import classes from './ResponsiveAppBar.module.css';
-import logo from '../../assets/images/logo.png';
+import logo from '../../assets/images/HH3.png';
 
 // const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Logout'];
@@ -52,7 +52,7 @@ const ResponsiveAppBar = () => {
         navigate("/login", { replace: true });
     }
     return (
-        <AppBar position="sticky" sx={{ bgcolor: "#dd4343" }} className={classes.appBar}>
+        <AppBar position="sticky" sx={{ bgcolor: "#a8dadc" }} className={classes.appBar}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Typography

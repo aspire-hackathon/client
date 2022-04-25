@@ -1,8 +1,10 @@
 Button.contained, a.contained {
-    background-color: #dd4343;
+    background-color: #a8dadc;
     text-transform: none;
+    color:#444;
 }
 
 Button.contained:hover, a.contained:hover {
-    background-color: #ac3434;
+    background-color: #219ebc;
+    color:#FFF;
 }

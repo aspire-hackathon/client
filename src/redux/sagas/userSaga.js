@@ -4,7 +4,7 @@ import axios from 'axios';
 import users from '../reducers/users';
 
 function registerApi(user) {
-    return axios.post(process.env.REACT_APP_API_URL+'/register',user)
+    return axios.post(process.env.REACT_APP_API_URL+'/user/register',user)
     .then(res => res)
     .catch((error) => {throw error})
 }

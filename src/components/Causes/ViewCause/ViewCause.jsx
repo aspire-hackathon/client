@@ -12,7 +12,7 @@ const ViewCause = (props) => {
     let param = useParams();
     React.useEffect(() => {
      console.log("sss",param.id);
-     axios.get(`http://a42f5461f582449a29fdc102149e9fd5-390825282.us-east-1.elb.amazonaws.com/api/cause/byid/623ece840d8b74d3ecf5d9d1`).then(({data})=>{
+     axios.get(`http://localhost:8080/cause/byid/623ece840d8b74d3ecf5d9d1`).then(({data})=>{
          setCauseData(data);
      })
     }, []);
@@ -47,8 +47,8 @@ return(
       </CardContent>
       </CardContent>
       <CardActions sx={{display:'flex', flexDirection:'column', gap:'40px', justifyContent:'center'}}>
-        <Button variant="contained" sx={{mt: 3,mb: 2, bgcolor: "#dd4343",":hover": {bgcolor: "#ac3434",},width:'135px'}} > Join the Cause</Button>
-        <Button variant="contained" sx={{mt: 3,mb: 2, bgcolor: "#dd4343",":hover": {bgcolor: "#ac3434",},width:'135px'}} > Donate</Button>
+        <Button variant="contained" sx={{mt: 3,mb: 2,color:"#444", bgcolor: "#dd4343",":hover": {bgcolor: "#a8dadc",color:"#FFF"},width:'135px'}} > Join the Cause</Button>
+        <Button variant="contained" sx={{mt: 3,mb: 2,color:"#444", bgcolor: "#dd4343",":hover": {bgcolor: "#a8dadc",color:"#FFF"},width:'135px'}} > Donate</Button>
       </CardActions>
     </Card>
     </Box>

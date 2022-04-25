@@ -140,9 +140,11 @@ export default function CausesForm() {
                         sx={{
                             mt: 3,
                             mb: 2,
-                            bgcolor: "#dd4343",
+                            bgcolor: "#a8dadc",
+                            color:"#444",
                             ":hover": {
-                                bgcolor: "#ac3434",
+                                bgcolor: "#219ebc",
+                                color:"#FFF",
                             },
                         }}
                     >

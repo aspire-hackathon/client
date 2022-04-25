@@ -54,7 +54,7 @@ export default function Login() {
                     alignItems: "center",
                 }}
             >
-                <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+                <Avatar sx={{ m: 1, color:"#444", bgcolor: "#a8dadc" }}>
                     <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
@@ -119,9 +119,12 @@ export default function Login() {
                         sx={{
                             mt: 3,
                             mb: 2,
-                            bgcolor: "#dd4343",
+                            color: "#444",
+                            bgcolor: "#a8dadc",
                             ":hover": {
-                                bgcolor: "#ac3434",
+                                bgcolor: "#219ebc",
+                                color: "#FFF",
+                                transition: "all 0.5s"
                             },
                         }}
                     >

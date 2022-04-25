@@ -4,7 +4,7 @@ import * as types from '../types/users';
 
 function userLoginApi(payload) {
   return axios
-    .post(`${process.env.REACT_APP_API_URL}/login`, payload, {
+    .post(`${process.env.REACT_APP_API_URL}/user/login`, payload, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -20,6 +20,7 @@ function userLoginApi(payload) {
 function* userLoginAction(action) {
   try {
     const res = yield call(userLoginApi, action.payload.user);
+    console.log("userLoginAction",res);
     if (res.msg && res.msg === 'Auth successful') {
       localStorage.setItem(
         'ACCESS_TOKEN',

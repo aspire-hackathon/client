@@ -17,7 +17,7 @@
 }
 
 .appBar .login:hover {
-    border: 1px solid #dd4343;
+    border: 1px solid #219ebc;
     background-color: #fefefe;
-    color: #dd4343;
+    color: #444;
 }

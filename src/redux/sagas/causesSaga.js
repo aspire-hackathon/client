@@ -3,7 +3,7 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 import * as types from '../types/causes';
 
 function getCausesApi() {
-    return axios.get(process.env.REACT_APP_API_URL+'/causes')
+    return axios.get(process.env.REACT_APP_API_URL+'/cause')
     .then(res => res.data)
     .catch((error) => {throw error})
 }

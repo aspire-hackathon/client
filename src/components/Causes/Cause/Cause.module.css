@@ -74,4 +74,10 @@
 
 .cardFooter .button {
     padding: 5px 15px;
+    background-color: #a8dadc;
+    color: #444;
+}
+.cardFooter .button:hover {
+
+    color: #FFF;
 }

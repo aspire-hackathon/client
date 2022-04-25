@@ -18,13 +18,13 @@ main {
 }
 
 .footer {
-    background: #dd4343;
+    background: #a8dadc;
     padding: 5px;
     text-align: center;
 }
 
 .footer span {
-    color: #fefefe;
+    color: #444;
     display: inline-block;
     font-weight: 700;
 }
