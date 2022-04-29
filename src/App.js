@@ -7,9 +7,21 @@ import Users from './components/Users/UsersComponent';
 import Causes from './components/Causes/Causes';
 import CausesForm from './components/Causes/Cause/CausesForm';
 import ViewCause from './components/Causes/ViewCause/ViewCause';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 const theme = createTheme();
+
+const ProtectedRoute  = (Component) =>{
+    return (
+        <Route path="causes"
+          element={localStorage.getItem('ACCESS_TOKEN') ?
+              <Component /> :
+              <Navigate to='/login' />
+            } 
+        />
+    )
+}
 
 function App() {
     return (
@@ -19,15 +31,14 @@ function App() {
                 <main>
                 <ThemeProvider theme={theme}>
                     <Routes>
-                        <Route path="/" >
-                            {/* <Route index element={<Register />} /> */}
+                        <Route path="/" exact element={<>Welcome!</>}/>
                             <Route path="register" element={<Register />} />
                             <Route path="login" element={<Login />} />
                             <Route path="users" element={<Users />} />
-                            <Route path="causes" element={<Causes />} />
+                            {ProtectedRoute(Causes)}
+                            {/* <Route path="causes" element={<Causes /> } /> */}
                             <Route exact path="causes/:id" element={<ViewCause/>}  />
                             <Route path="causes-form" element={<CausesForm />} />
-                        </Route>
                     </Routes>
                 </ThemeProvider>
                 </main>

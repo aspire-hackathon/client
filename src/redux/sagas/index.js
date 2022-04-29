@@ -1,6 +1,6 @@
 import { all } from 'redux-saga/effects';
 import {getUserByIdSaga,getUserByUnameSaga,registerUserSaga} from './userSaga';
-import {causesSaga} from './causesSaga';
+import {getcausesSaga,getcauseByIdSaga,joinCauseSaga} from './causesSaga';
 
 import userLoginSaga from './userLoginSaga';
 
@@ -10,6 +10,8 @@ export default function* rootSaga() {
         getUserByIdSaga(),
         getUserByUnameSaga(),
         userLoginSaga(),
-        causesSaga()
+        getcausesSaga(),
+        getcauseByIdSaga(),
+        joinCauseSaga()
     ])
 }

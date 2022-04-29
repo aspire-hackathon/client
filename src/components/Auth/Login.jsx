@@ -37,8 +37,6 @@ export default function Login() {
         },
         validationSchema: LoginSchema,
         onSubmit: (values) => {
-            console.log('values------', values);
-            // alert(JSON.stringify(values, null, 2));
             dispatch(login(values, navigate));
         },
     });

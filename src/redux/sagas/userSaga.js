@@ -33,7 +33,6 @@ export function* registerUserSaga() {
 }
 
 function userByIdApi(id){
-    console.log('saga',id)
     return axios.get(process.env.REACT_APP_API_URL+`/user/byid/${id}`)
     .then(res => res.data)
     .catch((error) => {throw error})
@@ -53,7 +52,6 @@ export function* getUserByIdSaga() {
 }
 
 function userByUnameApi(username){
-    console.log('saga',username)
     return axios.get(process.env.REACT_APP_API_URL+`/user/byid/${id}`)
     .then(res => res.data)
     .catch((error) => {throw error})

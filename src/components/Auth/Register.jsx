@@ -38,7 +38,6 @@ export default function Register() {
   const [addressObject, setAddressObject] = React.useState({});
 
   React.useEffect(()=>{
-      console.log(error)
     if(reqStatus && reqStatus.code) {
         if(reqStatus.code.toString().startsWith('2')){
             navigate("/login", { replace: true });

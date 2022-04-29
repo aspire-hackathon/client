@@ -10,6 +10,7 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import {useSelector} from 'react-redux';
 
 import Button from '../UI/Button/Button';
 
@@ -24,7 +25,8 @@ const settings = ['Profile', 'Logout'];
 const ResponsiveAppBar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
-    const [isUserLoggedIn, setIsUserLoggedIn] = React.useState(true);
+    const [isUserLoggedIn, setIsUserLoggedIn] = React.useState(localStorage.getItem('ACCESS_TOKEN') ? true : false);
+    const userDetail = useSelector(state => state.users.userDetail);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -49,6 +51,7 @@ const ResponsiveAppBar = () => {
     const logOutHandler = () => {
         setIsUserLoggedIn(false);
         localStorage.removeItem('ACCESS_TOKEN');
+        localStorage.removeItem('user');
         navigate("/login", { replace: true });
     }
     return (
@@ -84,7 +87,7 @@ const ResponsiveAppBar = () => {
 
                         {isUserLoggedIn && <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                <Avatar alt={userDetail.username} src="" />
                             </IconButton>
                         </Tooltip>}
 
@@ -110,11 +113,6 @@ const ResponsiveAppBar = () => {
                             <MenuItem key="logOut" onClick={logOutHandler}>
                                 <Typography textAlign="center">Logout</Typography>
                             </MenuItem>
-                            {/* {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
-                                </MenuItem>
-                            ))} */}
                         </Menu>}
                     </Box>
                 </Toolbar>

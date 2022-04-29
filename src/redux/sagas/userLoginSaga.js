@@ -20,7 +20,6 @@ function userLoginApi(payload) {
 function* userLoginAction(action) {
   try {
     const res = yield call(userLoginApi, action.payload.user);
-    console.log("userLoginAction",res);
     if (res.msg && res.msg === 'Auth successful') {
       localStorage.setItem(
         'ACCESS_TOKEN',

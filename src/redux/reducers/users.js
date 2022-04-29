@@ -10,20 +10,18 @@ const initialState = {
     },
     error: null,
     requestedUser:'',
-    isUserAuthenticated: false,
-    userDetail: undefined
+    isUserAuthenticated: localStorage.getItem('user') ? true :false,
+    userDetail: JSON.parse(localStorage.getItem('user')) || {}
 };
 
 export default function users(state = initialState, action) {
     switch(action.type) {
         case type.REGISTER_USER:
-            console.log("reg");
             return {
                 ...state,
                 loading: true
             }
         case type.REGISTER_USER_SUCCESS:
-            console.log("reg",action);
             return {
                 ...state,
                 loading: false,
@@ -33,7 +31,6 @@ export default function users(state = initialState, action) {
                 }
             }
         case type.REGISTER_USER_FAILURE:
-            console.log('fail',action)
             return {
                 ...state,
                 loading: false,
@@ -49,14 +46,12 @@ export default function users(state = initialState, action) {
                 loading: true
             }
         case type.GET_USER_BYID_SUCCESS:
-            console.log('succ')
             return {
                 ...state,
                 loading: false,
                 requestedUser: action.user,
             }
         case type.GET_USER_BYID_FAILURE:
-            console.log('fail',action)
             return {
                 ...state,
                 loading: false,
@@ -64,7 +59,7 @@ export default function users(state = initialState, action) {
             }
 
         case type.USER_LOGIN_SUCCESS:
-            console.log("success",action);
+            localStorage.setItem('user',JSON.stringify(action.userDetail));
             if (
                 action &&
                 action.isUserAuthenticated
@@ -80,7 +75,6 @@ export default function users(state = initialState, action) {
                 isUserAuthenticated: action.isUserAuthenticated
             }
         case type.USER_LOGIN_FAILURE:
-            console.log("fail");
             return {
                 ...state,
                 loading: false,

@@ -1,21 +1,30 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {Card,Box,CardContent,CardMedia,Typography,CardActions} from '@mui/material';
 import Button from '../../UI/Button/Button'
-import { Link ,useParams} from 'react-router-dom';
-import  axios  from 'axios';
+import { useParams} from 'react-router-dom';
+import {joinCause} from  '../../../redux/actions/causes';
 import classes from './ViewCause.module.css';
-import { display, typography } from '@mui/system';
+import {useDispatch,useSelector} from 'react-redux';
 import tempImg from '../../../assets/images/HH.png';
 
 const ViewCause = (props) => {
-    const [causeData,setCauseData] = useState();
+    const dispatch = useDispatch();
+    const causeData = useSelector(state => {
+      console.log(state);
+      return  state.causes.cause
+    });
+    const loading = useSelector(state => state.causes.loading);
+    const error = useSelector(state => state.causes.error);
+
     let param = useParams();
     React.useEffect(() => {
-     console.log("sss",param.id);
-     axios.get(`http://localhost:8080/cause/byid/623ece840d8b74d3ecf5d9d1`).then(({data})=>{
-         setCauseData(data);
-     })
+    //  dispatch(getCauseById(param.id));
+
     }, []);
+
+    const addVolunteer = () => {
+      dispatch(joinCause(param.id,'623ecf370d8b74d3ecf5d9d9'));
+    }
 
 return(
     <Box component="div" display="flex" alignContent="center"  justifyContent="center" >
@@ -33,10 +42,7 @@ return(
          {causeData?.aimDescription}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-        <Typography variant='h6' component='span'>Volunteers : </Typography>
-        {causeData?.volunteers.map((item,i)=>(
-            <Typography component="span">{item}{i < causeData?.volunteers.length-1 && ", "}</Typography>
-        ))}
+        <Typography variant='h6' component='span'>Volunteers : {causeData?.volunteers?.length}</Typography>
         </Typography>
         <Typography variant="body2" color="text.secondary">
         <Typography variant='h6' component='span'>Address : </Typography>
@@ -47,7 +53,7 @@ return(
       </CardContent>
       </CardContent>
       <CardActions sx={{display:'flex', flexDirection:'column', gap:'40px', justifyContent:'center'}}>
-        <Button variant="contained" sx={{mt: 3,mb: 2,color:"#444", bgcolor: "#dd4343",":hover": {bgcolor: "#a8dadc",color:"#FFF"},width:'135px'}} > Join the Cause</Button>
+        <Button variant="contained" sx={{mt: 3,mb: 2,color:"#444", bgcolor: "#dd4343",":hover": {bgcolor: "#a8dadc",color:"#FFF"},width:'135px'}} onClick={addVolunteer}> Join the Cause</Button>
         <Button variant="contained" sx={{mt: 3,mb: 2,color:"#444", bgcolor: "#dd4343",":hover": {bgcolor: "#a8dadc",color:"#FFF"},width:'135px'}} > Donate</Button>
       </CardActions>
     </Card>

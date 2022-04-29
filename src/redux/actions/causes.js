@@ -6,3 +6,20 @@ export function getCauses(causes) {
         payload: causes,
     }
 }
+
+export function getCauseById(id) {
+    return {
+        type: type.GET_CAUSE_BYID,
+        payload: id,
+    }
+}
+
+export function joinCause(id,volId) {
+    return {
+        type: type.UPDATE_VOLUNTEER,
+        payload: {
+            id,
+            volId
+        }
+    }
+}
